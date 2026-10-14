@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
+{% block head_extra %}<script>/* Show the welcome animation once per browser session */(function(){try{if(!sessionStorage.getItem('campushubIntroSeen')&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){window.location.replace('{{ url_for("intro") }}');}}catch(e){}})();</script>{% endblock %}
 {% block content %}
 <section class="hero">
   <div class="hero-copy reveal">

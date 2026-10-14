@@ -12,3 +12,39 @@ main{min-height:65vh}.hero{position:relative;display:grid;grid-template-columns:
 @media(max-width:1120px){.topbar{gap:15px;padding-left:4%;padding-right:4%}.main-nav{gap:17px}.nav-search{display:none}.hero{padding-left:6%;padding-right:6%;gap:35px}.hero h1{font-size:clamp(40px,5vw,58px)}.popular-section,.feature-band,.page-heading{padding-left:6%;padding-right:6%}.directory-grid{padding-left:6%;padding-right:6%}.search-panel{margin-left:6%;margin-right:6%}.category-row{padding-left:6%;padding-right:6%}.results-head{margin-left:6%;margin-right:6%}.stats-grid,.dashboard-welcome,.dashboard-bookings,.admin-resources{padding-left:6%;padding-right:6%}}
 @media(max-width:800px){.topbar{flex-wrap:wrap;min-height:70px}.mobile-menu{display:block;order:3}.main-nav{display:none;order:4;flex-basis:100%;padding:5px 0 10px;gap:23px}.main-nav.nav-open{display:flex}.nav-actions{margin-left:auto}.user-chip{display:none}.brand{font-size:17px}.brand-mark{font-size:29px}.hero{grid-template-columns:1fr;padding-top:53px;padding-bottom:45px;gap:35px}.hero-copy{max-width:650px}.hero h1{font-size:clamp(44px,8vw,66px)}.hero-visual{height:330px;width:100%;max-width:600px}.feature-band{grid-template-columns:1fr;gap:35px}.directory-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.auth-layout{grid-template-columns:1fr}.auth-art{min-height:300px;max-height:340px}.auth-art-content{padding:38px}.auth-art h1{font-size:42px;margin:13px 0}.auth-art-content>p{font-size:11px;max-width:440px}.auth-art-bottom{margin-top:20px}.auth-panel{padding:75px 28px 45px}.back-link{top:25px;left:28px}.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.admin-resource-layout{grid-template-columns:1fr}.footer{flex-wrap:wrap}.footer p{flex-basis:100%;order:3}.footer>span{margin-left:auto}}
 @media(max-width:540px){.topbar{padding:13px 17px;gap:10px}.brand small{font-size:6px}.nav-actions{gap:8px}.nav-actions .button{padding:9px 11px;font-size:9px}.main-nav{gap:17px}.main-nav a{font-size:11px}.hero{padding:44px 21px 36px}.hero h1{font-size:43px;letter-spacing:-2.4px}.hero-description{font-size:12px}.hero-actions{gap:15px}.hero-actions .button{padding:13px 15px}.hero-visual{height:280px;border-radius:34% 34% 15px 15px}.featured-resource{left:12px;right:12px;bottom:12px;padding:13px}.featured-resource h3{font-size:20px;margin:12px 0 4px}.featured-resource p{font-size:9px}.availability{font-size:8px}.hero-stamp{right:-9px;top:15px}.marquee-track{gap:30px}.popular-section{padding:57px 20px}.section-heading{align-items:flex-start;flex-direction:column;gap:15px}.section-heading h2{font-size:32px}.resource-card{flex-basis:78%}.carousel-prev{left:-9px}.carousel-next{right:-9px}.feature-band{padding:47px 23px}.feature-copy h2{font-size:40px}.bottom-cta{padding:65px 22px}.bottom-cta h2{font-size:34px}.footer{padding:23px 20px;gap:13px}.footer>span{font-size:8px}.page-heading{padding:40px 21px 20px}.page-heading h1,.dashboard-welcome h1{font-size:42px}.search-panel{margin:0 20px 18px;flex-wrap:wrap;padding:9px}.search-field{flex-basis:100%;padding:0 7px}.search-panel select{max-width:none;flex:1}.search-panel .button{flex:1;padding:12px}.category-row{padding:0 20px 18px;gap:7px}.category-chip{padding:9px 11px;font-size:9px}.results-head{margin:0 20px 14px}.directory-grid{grid-template-columns:1fr;padding:0 20px 50px;gap:13px}.directory-photo{height:185px}.directory-info{padding:16px}.directory-info h3{font-size:18px}.auth-art{min-height:270px}.auth-art-content{padding:28px 23px}.auth-art h1{font-size:38px}.auth-panel{padding:70px 22px 40px}.auth-form-wrap h2{font-size:27px}.dashboard-welcome{padding:39px 21px 22px;align-items:flex-start;flex-direction:column;gap:18px}.dashboard-welcome h1{font-size:36px}.stats-grid{padding:0 20px 42px;gap:9px}.stat-card{padding:13px;grid-template-columns:33px 1fr;gap:8px}.stat-icon{width:33px;height:33px;font-size:15px;border-radius:10px}.stat-card strong{font-size:25px}.stat-label{font-size:9px}.stat-card small{font-size:8px}.dashboard-bookings,.admin-resources{padding:0 20px 50px}.dashboard-bookings .section-heading,.admin-resources .section-heading{flex-direction:row;align-items:flex-end}.admin-badge{font-size:9px}.booking-modal{padding:25px 20px}.booking-modal h2{font-size:23px}.review-actions{flex-direction:column}.admin-resource-list article{flex-wrap:wrap}.admin-resource-list article>div{min-width:130px}.error-page h1{font-size:45px}}
+
+/* =====================================================================
+   v2 additions (appended; the original botanical theme above is unchanged)
+   ===================================================================== */
+/* Readable text: darker muted colour and badge colours (all >= 4.5:1) */
+:root{--muted:#56635b}
+.status{font-size:12px;font-weight:600;padding:6px 11px}
+.status-pending{background:#fff1d8;color:#7a5212}
+.status-approved{background:#e1f2e6;color:#256041}
+.status-rejected,.status-cancelled{background:#f6e3df;color:#8a3b2f}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+/* Images fail gracefully offline: solid green shows behind the photo */
+.hero-image,.photo-1,.photo-2,.photo-3,.photo-4,.photo-5,.photo-6{background-color:var(--forest-3)}
+.auth-art-bg{background-color:var(--forest-2)}
+body{font-family:'DM Sans','Segoe UI',system-ui,-apple-system,Roboto,'Helvetica Neue',Arial,sans-serif}
+
+/* Role badge in the header: students and admins are always told which area they are in */
+.role-chip{display:inline-flex;align-items:center;padding:5px 11px;border-radius:30px;font-size:11px;font-weight:700;letter-spacing:.04em;white-space:nowrap}
+.role-student{background:var(--sage);color:var(--forest)}
+.role-admin{background:var(--gold);color:var(--forest)}
+
+/* Student vs admin look: admin pages get a deep-green welcome band */
+.admin-page .dashboard-welcome{background:var(--forest);color:var(--cream);border-bottom:4px solid var(--gold)}
+.admin-page .dashboard-welcome h1,.admin-page .dashboard-welcome p,.admin-page .dashboard-welcome .eyebrow{color:var(--cream)}
+.admin-page .dashboard-welcome em{color:var(--sage)}
+.admin-page .admin-badge{background:var(--gold);color:var(--forest)}
+.admin-page .stat-card{border-top:3px solid var(--forest)}
+.student-page .stat-card{border-top:3px solid var(--sage-2)}
+.admin-filters{padding-left:0;padding-right:0;margin-bottom:18px}
+.table-sub{display:block;margin-top:3px;color:var(--muted);font-size:12px}
+.slot-note{display:block;margin-top:6px;color:var(--muted);font-size:12px}
+.footer-link{color:inherit;text-decoration:underline}
+.auth-note code{background:#0000000d;padding:1px 5px;border-radius:4px;font-size:.92em}
+select option:disabled{color:#8a8f8c}
+@media(max-width:700px){.role-chip{font-size:10px;padding:4px 8px}}
