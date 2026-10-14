@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy reveal">
+    <div class="eyebrow"><span class="eyebrow-dot"></span> YOUR CAMPUS, YOUR RESOURCES</div>
+    <h1>Book. Manage.<br>Make it <em>happen.</em></h1>
+    <p class="hero-description">Campus Resource Hub helps you discover and book labs, classrooms, seminar halls, projectors and more — all in one place.</p>
+    <div class="hero-actions"><a class="button button-primary" href="{{ url_for('resources_page') }}">Explore resources <span>↗</span></a><a class="text-button" href="#popular"><span class="play-icon">▶</span> Discover spaces</a></div>
+    <div class="hero-trust"><div class="mini-avatars"><span>✳</span><span>⌂</span><span>↗</span></div><span>One hub for your next big idea</span></div>
+  </div>
+  <div class="hero-visual reveal">
+    <div class="hero-image"></div><div class="image-shade"></div>
+    <div class="leaf-outline leaf-a">❧</div><div class="leaf-outline leaf-b">❧</div>
+    <div class="floating-note note-top"><span class="note-dot"></span> Spaces for ideas</div>
+    <div class="featured-resource">
+      <div class="featured-top"><span class="tiny-pill">✦ FEATURED SPACE</span><span class="availability"><i></i> Available to request</span></div>
+      <h3>Innovation Lab</h3><p>Computers · High-speed internet · 40 seats</p>
+      <a class="round-arrow" href="{{ url_for('resources_page', q='Innovation Lab') }}" aria-label="Explore Innovation Lab">↗</a>
+    </div>
+    <div class="hero-stamp"><span>✳</span><small>MAKE ROOM<br>FOR GREATNESS</small></div>
+  </div>
+</section>
+<div class="marquee-band" aria-label="Campus resources">
+  <div class="marquee-track"><span>✳ LABORATORIES</span><span>✳ SEMINAR HALLS</span><span>✳ PROJECT EQUIPMENT</span><span>✳ COLLABORATION SPACES</span><span>✳ CLASSROOMS</span><span>✳ LABORATORIES</span><span>✳ SEMINAR HALLS</span><span>✳ PROJECT EQUIPMENT</span></div>
+</div>
+<section class="section popular-section" id="popular">
+  <div class="section-heading reveal"><div><div class="eyebrow">FIND YOUR NEXT SPACE</div><h2>Room for every <em>possibility.</em></h2><p>From focused study sessions to big campus events, find a space that fits.</p></div><a class="text-button underlined" href="{{ url_for('resources_page') }}">View all resources <span>↗</span></a></div>
+  <div class="carousel-wrap reveal">
+    <button class="carousel-arrow carousel-prev" aria-label="Previous resources">←</button>
+    <div class="resource-carousel" id="resourceCarousel">
+      {% for r in resources %}
+      <article class="resource-card">
+        <div class="resource-photo photo-{{ loop.index }}"><span class="resource-emoji">{{ r.icon }}</span><span class="photo-status"><i></i> {{ 'Available' if r.active else 'Unavailable' }}</span></div>
+        <div class="resource-info"><div class="resource-category">{{ r.category }}</div><h3>{{ r.name }}</h3><p>⌖ {{ r.location }}</p><div class="resource-bottom"><span>♧ {{ r.capacity }} {{ 'seats' if r.capacity > 1 else 'item' }}</span><a href="{{ url_for('resources_page', q=r.name) }}" aria-label="View {{ r.name }}">↗</a></div></div>
+      </article>
+      {% endfor %}
+    </div>
+    <button class="carousel-arrow carousel-next" aria-label="Next resources">→</button>
+  </div>
+  <div class="carousel-progress"><span id="carouselProgress"></span></div>
+</section>
+<section class="feature-band">
+  <div class="feature-copy reveal"><div class="eyebrow">A LITTLE MORE ORGANIZED</div><h2>Less searching.<br><em>More doing.</em></h2><p>One thoughtful space to check resources, send booking requests, and keep track of your campus plans.</p><a class="button button-light" href="{{ url_for('resources_page') }}">Find your space ↗</a></div>
+  <div class="feature-list reveal"><div><span>01</span><section><h3>Discover with ease</h3><p>Search and filter campus spaces by type, name, or location.</p></section><b>↗</b></div><div><span>02</span><section><h3>Request a booking</h3><p>Choose a date and time slot, then send your request for review.</p></section><b>↗</b></div><div><span>03</span><section><h3>Stay in the loop</h3><p>View your bookings and see their latest status from your dashboard.</p></section><b>↗</b></div></div>
+</section>
+<section class="bottom-cta reveal"><div class="cta-leaves">❧</div><div class="eyebrow">YOUR NEXT CHAPTER STARTS HERE</div><h2>Have a plan? Find a <em>place.</em></h2><p>Make the most of the spaces your campus already has.</p><a class="button button-primary" href="{{ url_for('resources_page') }}">Explore campus resources ↗</a></section>
+{% endblock %}
