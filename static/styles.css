@@ -388,8 +388,9 @@ img { max-width: 100%; height: auto; }
 }
 
 .dashboard-bookings {
-  padding-top: 0;
-  padding-bottom: 52px;
+  /* Keep the same horizontal container as the summary cards.
+     Do not use a vertical-only padding override here: it resets left/right padding to zero. */
+  padding: 0 clamp(24px, 7.5vw, 112px) 52px;
 }
 
 .dashboard-bookings .section-heading,
