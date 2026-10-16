@@ -70,7 +70,9 @@ document.addEventListener("DOMContentLoaded", () => {
       modal.setAttribute("aria-hidden", "false");
       document.body.classList.add("modal-open");
       const dateInput = document.getElementById("bookingDate");
-      dateInput.min = new Date().toISOString().slice(0, 10);
+      const now = new Date();
+      const localToday = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+      dateInput.min = localToday;
       dateInput.focus();
     }));
     document.getElementById("closeBooking")?.addEventListener("click", close);
