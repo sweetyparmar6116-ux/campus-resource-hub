@@ -71,10 +71,47 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.classList.add("modal-open");
       const dateInput = document.getElementById("bookingDate");
       const now = new Date();
-      const localToday = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
-      dateInput.min = localToday;
+      // local calendar date (toISOString() would use UTC and can be a day off)
+      dateInput.min = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+      dateInput.value = "";
+      resetSlots();
       dateInput.focus();
     }));
+
+    // Live availability: disable time slots already taken for the chosen resource/date.
+    const slotSelect = document.getElementById("bookingSlot");
+    const slotNote = document.getElementById("slotNote");
+    const resetSlots = () => {
+      if (!slotSelect) return;
+      slotSelect.value = "";
+      slotSelect.querySelectorAll("option").forEach(o => { o.disabled = false; o.textContent = o.value || o.textContent; });
+      if (slotNote) slotNote.textContent = "Pick a date to see which slots are free.";
+    };
+    document.getElementById("bookingDate")?.addEventListener("change", async event => {
+      const resourceId = document.getElementById("bookingResourceId").value;
+      if (!slotSelect || !event.target.value || !resourceId) return;
+      try {
+        const response = await fetch("/api/availability?resource_id=" + encodeURIComponent(resourceId) +
+                                     "&date=" + encodeURIComponent(event.target.value), {headers: {"Accept": "application/json"}});
+        if (!response.ok) throw new Error("availability unavailable");
+        const data = await response.json();
+        let freeCount = 0, totalCount = 0;
+        slotSelect.querySelectorAll("option").forEach(option => {
+          if (!option.value) return;
+          totalCount += 1;
+          const taken = data.taken.includes(option.value);
+          option.disabled = taken;
+          option.textContent = option.value + (taken ? " (already requested)" : "");
+          if (!taken) freeCount += 1;
+        });
+        if (slotSelect.selectedOptions[0]?.disabled) slotSelect.value = "";
+        if (slotNote) slotNote.textContent = freeCount
+          ? freeCount + " of " + totalCount + " slots are free on this date."
+          : "No free slots on this date. Try another day.";
+      } catch (error) {
+        if (slotNote) slotNote.textContent = "Couldn't check availability. You can still submit; conflicts are checked on the server.";
+      }
+    });
     document.getElementById("closeBooking")?.addEventListener("click", close);
     modal.addEventListener("click", e => { if (e.target === modal) close(); });
     document.addEventListener("keydown", e => { if (e.key === "Escape") close(); });
