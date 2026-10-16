@@ -10,7 +10,7 @@
     <div class="hero-trust"><div class="mini-avatars"><span>✳</span><span>⌂</span><span>↗</span></div><span>One hub for your next big idea</span></div>
   </div>
   <div class="hero-visual reveal">
-    <div class="hero-image"></div><div class="image-shade"></div>
+    <div class="hero-image-placeholder" aria-hidden="true"></div>
     <div class="leaf-outline leaf-a">❧</div><div class="leaf-outline leaf-b">❧</div>
     <div class="floating-note note-top"><span class="note-dot"></span> Spaces for ideas</div>
     <div class="featured-resource">
@@ -31,7 +31,7 @@
     <div class="resource-carousel" id="resourceCarousel">
       {% for r in resources %}
       <article class="resource-card">
-        <div class="resource-photo photo-{{ loop.index }}"><span class="resource-emoji">{{ r.icon }}</span><span class="photo-status"><i></i> {{ 'Available' if r.active else 'Unavailable' }}</span></div>
+        <div class="resource-photo photo-placeholder"><span class="resource-emoji">{{ r.icon }}</span><span class="photo-status"><i></i> {{ 'Available' if r.active else 'Unavailable' }}</span></div>
         <div class="resource-info"><div class="resource-category">{{ r.category }}</div><h3>{{ r.name }}</h3><p>⌖ {{ r.location }}</p><div class="resource-bottom"><span>♧ {{ r.capacity }} {{ 'seats' if r.capacity > 1 else 'item' }}</span><a href="{{ url_for('resources_page', q=r.name) }}" aria-label="View {{ r.name }}">↗</a></div></div>
       </article>
       {% endfor %}

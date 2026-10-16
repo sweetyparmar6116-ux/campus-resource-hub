@@ -32,7 +32,7 @@
       <a class="nav-search" href="{{ url_for('resources_page') }}"><span>⌕</span><span>Search resources</span></a>
       {% if current_user %}
         <span class="user-chip"><span class="avatar">{{ current_user.name[0]|upper }}</span><span>{{ current_user.name.split()[0] }}</span></span>
-        <form action="{{ url_for('logout') }}" method="post" class="inline-form"><button class="button button-small button-outline" type="submit">Sign out</button></form>
+        <form action="{{ url_for('logout') }}" method="post" class="inline-form"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="button button-small button-outline" type="submit">Sign out</button></form>
       {% else %}
         <a class="button button-small button-cream" href="{{ url_for('login') }}">Login / Sign up <span>↗</span></a>
       {% endif %}

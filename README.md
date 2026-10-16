@@ -52,9 +52,10 @@ python app.py
 
 - This is an academic prototype, not production-hardened software.
 - SQLite is used for local development. For a cloud deployment, migrate to a managed database such as Amazon RDS.
-- The app uses environment variables for the secret key and admin bootstrap credentials. Never commit `.env` or cloud credentials.
-- Add CSRF protection, rate limiting, password reset, email verification, stronger session/security settings, automated tests, and production WSGI hosting before real-world use.
+- The app uses environment variables for the secret key and admin bootstrap credentials. If `SECRET_KEY` is not set, a random key is generated at startup; set a stable secret for deployments that restart or run multiple workers. Never commit `.env` or cloud credentials.
+- Forms include session-bound CSRF protection. Add rate limiting, password reset, email verification, stronger production session/security settings, and production WSGI hosting before real-world use.
 - The app uses a small set of sample resources. Update them through the admin dashboard.
+- Resource previews use neutral local placeholders; no FCRIT facility photographs have been added because official provenance and reuse permissions have not been verified.
 - Booking requests are stored persistently in SQLite; the database file is created on first launch.
 - The animated intro can be skipped with the Skip link and respects reduced-motion preferences.
 - AWS resources may incur charges. Check current pricing and free-tier eligibility before provisioning anything.

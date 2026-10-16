@@ -334,7 +334,6 @@ img { max-width: 100%; height: auto; }
   .footer p, .footer > span { font-size: 13px; }
 }
 
-
 /* Admin dashboard audit — alignment, hierarchy, and responsive table */
 .dashboard-welcome,
 .stats-grid,
@@ -531,4 +530,26 @@ img { max-width: 100%; height: auto; }
   .admin-resources {
     padding-bottom: 46px;
   }
+}
+
+.admin-booking-table {
+  table-layout: fixed;
+  min-width: 900px;
+}
+.admin-booking-table th:nth-child(1) { width: 24%; }
+.admin-booking-table th:nth-child(2) { width: 22%; }
+.admin-booking-table th:nth-child(3) { width: 17%; }
+.admin-booking-table th:nth-child(4) { width: 14%; }
+.admin-booking-table th:nth-child(5) { width: 23%; }
+.admin-booking-table .table-resource { min-width: 0; }
+.admin-booking-table .table-resource > span:last-child { min-width: 0; overflow-wrap: anywhere; }
+.admin-booking-table td:nth-child(5) { white-space: nowrap; }
+.admin-booking-table .review-actions { gap: 8px; }
+.hero-image-placeholder {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, #dce8d4, #f0ede2);
+}
+.photo-placeholder {
+  background: linear-gradient(145deg, #edf0e6, #dce7d4);
 }
